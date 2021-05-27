@@ -1,0 +1,39 @@
+# 应用名称
+spring:
+  application:
+    name: book-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://121.196.169.60:3306/raorao_book?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: rl18702327006
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+  rabbitmq:
+    host: 39.102.53.82
+    username: raorao
+    password: rl18702327006
+    virtual-host: /raorao
+    template:
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 300000ms
+        multiplier: 2
+      exchange: raorao.book.exchange
+    publisher-confirm-type: correlated
+server:
+  port: 8091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://121.196.169.60:10086/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 121.196.169.60
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: true # 开启驼峰命名转换法
+
